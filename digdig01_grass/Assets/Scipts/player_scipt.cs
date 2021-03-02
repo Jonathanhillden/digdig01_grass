@@ -27,6 +27,16 @@ public class player_scipt : MonoBehaviour
 
         //Camera
         camPos.position = transform.position + offset; 
+
+        if (Input.GetKey("d"))
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (Input.GetKey("a"))
+        {
+            transform.localScale = new Vector3(-1, 1, 1); 
+        }
     }
 
     void Jump()

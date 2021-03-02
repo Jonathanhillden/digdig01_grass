@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class idleVildsvin : MonoBehaviour
 {
-    Transform groundCheck;
 
     public bool isGrounded = true;
     public float idleSpeed = 5f;
@@ -12,19 +11,16 @@ public class idleVildsvin : MonoBehaviour
     bool idleWalkLeft = true;
     float idleWalkDirectionVariabel = -1f;
 
-    Vector3 groundCheckOffset;
+    Vector3 groundScale;
 
     void Start()
     {
-        groundCheck = transform.gameObject.transform.GetChild(0);
-        groundCheckOffset.x = groundCheck.position.x - transform.position.x;
-        Debug.Log(groundCheckOffset);
+        groundScale.x = gameObject.transform.localScale.x;
     }
 
     void Update()
     {
         IdleWalk();
-        Debug.Log(groundCheck.position);
     }
 
     void IdleWalk()
@@ -36,13 +32,15 @@ public class idleVildsvin : MonoBehaviour
         {
             if (idleWalkLeft == true)
             {
-                groundCheck.position -= groundCheckOffset * 2;
+                idleWalkDirectionVariabel = 1f;
+                gameObject.transform.localScale -= groundScale * 2;
                 isGrounded = true;
                 idleWalkLeft = false;
             }
             else
             {
-                groundCheck.position += groundCheckOffset * 2;
+                idleWalkDirectionVariabel = -1f;
+                gameObject.transform.localScale += groundScale * 2;
                 isGrounded = true;
                 idleWalkLeft = true;
             }

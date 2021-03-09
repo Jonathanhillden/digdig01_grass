@@ -27,11 +27,23 @@ public class idleVildsvin : MonoBehaviour
         {
             if(movingRight)
             {
+                if(gameObject.GetComponent<chargeVildsvin>().isCharging == true)
+                {
+                    gameObject.GetComponent<chargeVildsvin>().isCharging = false;
+                    speed /= 2;
+                }
+
                 transform.eulerAngles = new Vector3(0, -180, 0);
                 movingRight = false;
             }
             else
             {
+                if(gameObject.GetComponent<chargeVildsvin>().isCharging == true)
+                {
+                    gameObject.GetComponent<chargeVildsvin>().isCharging = false;
+                    speed /= 2;
+                }
+
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
             }

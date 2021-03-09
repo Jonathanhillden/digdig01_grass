@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 920129617}
   - component: {fileID: 920129618}
   - component: {fileID: 920129619}
+  - component: {fileID: 920129620}
   m_Layer: 0
   m_Name: Vildsvin
   m_TagString: Untagged
@@ -419,8 +420,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  distance: 5
+  distance: 1
   groundDetection: {fileID: 1777394667}
+--- !u!114 &920129620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920129614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b05541b23366ec4481a8003b8ce13aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 10
+  isCharging: 0
 --- !u!1 &972398904
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +719,7 @@ GameObject:
   m_Layer: 0
   m_Name: ground_Check
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

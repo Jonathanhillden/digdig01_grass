@@ -624,7 +624,9 @@ GameObject:
   m_Component:
   - component: {fileID: 954603390}
   - component: {fileID: 954603392}
+  - component: {fileID: 954603394}
   - component: {fileID: 954603391}
+  - component: {fileID: 954603393}
   m_Layer: 0
   m_Name: ground_Check(Spider)
   m_TagString: Untagged
@@ -653,7 +655,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954603389}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4c8ef7fdb7f2b1419088ebc79b12027, type: 3}
   m_Name: 
@@ -684,6 +686,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.29621315, y: 0.06219697}
   m_EdgeRadius: 0
+--- !u!114 &954603393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954603389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b117f30a0ab81244b49744062db44bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &954603394
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954603389}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1010044343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,6 +1181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584d665df54992f4498720b26029be2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: 0
+  moveSpeed: 3
 --- !u!1 &1691938594
 GameObject:
   m_ObjectHideFlags: 0

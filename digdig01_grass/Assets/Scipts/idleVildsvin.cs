@@ -4,45 +4,36 @@ using UnityEngine;
 
 public class idleVildsvin : MonoBehaviour
 {
+    public float speed;
+    public float distance;
 
-    public bool isGrounded = true;
-    public float idleSpeed = 5f;
+    bool movingRight = true;
 
-    bool idleWalkLeft = true;
-    float idleWalkDirectionVariabel = -1f;
+    public Transform groundDetection;
 
-    Vector3 groundScale;
+    int layerMask;
 
     void Start()
     {
-        groundScale.x = gameObject.transform.localScale.x;
+        layerMask = LayerMask.GetMask("Ground");
     }
 
     void Update()
     {
-        IdleWalk();
-    }
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-    void IdleWalk()
-    {
-        Vector3 movement = new Vector3(idleWalkDirectionVariabel, 0f, 0f);
-        transform.position += movement * Time.deltaTime * idleSpeed;
-
-        if (isGrounded == false)
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, layerMask);
+        if(!groundInfo.collider)
         {
-            if (idleWalkLeft == true)
+            if(movingRight)
             {
-                idleWalkDirectionVariabel = 1f;
-                gameObject.transform.localScale -= groundScale * 2;
-                isGrounded = true;
-                idleWalkLeft = false;
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                movingRight = false;
             }
             else
             {
-                idleWalkDirectionVariabel = -1f;
-                gameObject.transform.localScale += groundScale * 2;
-                isGrounded = true;
-                idleWalkLeft = true;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingRight = true;
             }
         }
     }

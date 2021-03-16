@@ -30,13 +30,13 @@ public class player_scipt : MonoBehaviour
 
         if (Input.GetKey("d"))
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector2(1, 1);
             //transform.localScale.x
         }
 
         if (Input.GetKey("a"))
         {
-            transform.localScale = new Vector3(-1, 1, 1); 
+            transform.localScale = new Vector2(-1, 1); 
         }
     }
 

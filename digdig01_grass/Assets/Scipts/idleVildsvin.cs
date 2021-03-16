@@ -7,7 +7,7 @@ public class idleVildsvin : MonoBehaviour
     public float speed;
     public float distance;
 
-    bool movingRight = true;
+    public bool movingRight = true;
 
     public Transform groundDetection;
 
@@ -23,29 +23,23 @@ public class idleVildsvin : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, layerMask);
-        if(!groundInfo.collider)
+        if (!groundInfo.collider)
         {
             if(movingRight)
             {
-                if(gameObject.GetComponent<chargeVildsvin>().isCharging == true)
-                {
-                    gameObject.GetComponent<chargeVildsvin>().isCharging = false;
-                    speed /= 2;
-                }
-
                 transform.eulerAngles = new Vector3(0, -180, 0);
                 movingRight = false;
             }
             else
             {
-                if(gameObject.GetComponent<chargeVildsvin>().isCharging == true)
-                {
-                    gameObject.GetComponent<chargeVildsvin>().isCharging = false;
-                    speed /= 2;
-                }
-
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
+            }
+
+            if (gameObject.GetComponent<chargeVildsvin>().isCharging == true)
+            {
+                gameObject.GetComponent<chargeVildsvin>().isCharging = false;
+                speed /= 2;
             }
         }
     }

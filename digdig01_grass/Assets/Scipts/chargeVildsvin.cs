@@ -26,7 +26,7 @@ public class chargeVildsvin : MonoBehaviour
             Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.green);
         }
 
-        if(hitInfo.collider.CompareTag("Player"))
+        if (hitInfo.collider.CompareTag("Player"))
         {
             if(!isCharging)
             {

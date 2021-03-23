@@ -8,7 +8,7 @@ public class idleVildsvin : MonoBehaviour
     public float groundDetectionRange;
     public float wallDetectionRange;
 
-    public bool movingRight = true;
+    public bool movingRight = false;
 
     public Transform groundCheck;
 
@@ -24,10 +24,10 @@ public class idleVildsvin : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * -speed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, groundDetectionRange, groundLayerMask);
-        RaycastHit2D wallInfo = Physics2D.Raycast(transform.position, transform.right, wallDetectionRange, wallLayerMask);
+        RaycastHit2D wallInfo = Physics2D.Raycast(transform.position, transform.right, -wallDetectionRange, wallLayerMask);
         if (!groundInfo.collider || wallInfo.collider)
         {
             if (movingRight)

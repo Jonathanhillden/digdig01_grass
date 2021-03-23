@@ -5,27 +5,32 @@ using UnityEngine;
 public class idleVildsvin : MonoBehaviour
 {
     public float speed;
-    public float distance;
+    public float groundDetectionRange;
+    public float wallDetectionRange;
 
     public bool movingRight = true;
 
-    public Transform groundDetection;
+    public Transform groundCheck;
 
-    int layerMask;
+    int groundLayerMask;
+    int wallLayerMask;
 
     void Start()
     {
-        layerMask = LayerMask.GetMask("Ground");
+        Physics2D.queriesStartInColliders = false;
+        groundLayerMask = LayerMask.GetMask("Ground");
+        wallLayerMask = LayerMask.GetMask("Wall", "Ground");
     }
 
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance, layerMask);
-        if (!groundInfo.collider)
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, groundDetectionRange, groundLayerMask);
+        RaycastHit2D wallInfo = Physics2D.Raycast(transform.position, transform.right, wallDetectionRange, wallLayerMask);
+        if (!groundInfo.collider || wallInfo.collider)
         {
-            if(movingRight)
+            if (movingRight)
             {
                 transform.eulerAngles = new Vector3(0, -180, 0);
                 movingRight = false;

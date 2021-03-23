@@ -26,6 +26,7 @@ public class combatVildsvin : MonoBehaviour
             else
             {
                 noDamageTimer = 0.1f;
+                Physics2D.IgnoreLayerCollision(8, 10, false);
                 timerIsRunning = false;
             }
         }
@@ -57,6 +58,7 @@ public class combatVildsvin : MonoBehaviour
                     gameObject.GetComponent<idleVildsvin>().speed /= 2;
                 }
                 timerIsRunning = true;
+                Physics2D.IgnoreLayerCollision(8, 10, true);
             }
         }
     }

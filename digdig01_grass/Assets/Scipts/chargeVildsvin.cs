@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class chargeVildsvin : MonoBehaviour
 {
-    public float distance;
+    public float playerDetectionRange;
 
     public bool isCharging = false;
     void Start()
@@ -16,14 +16,14 @@ public class chargeVildsvin : MonoBehaviour
 
     void Update()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.right, distance);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.right, playerDetectionRange);
         if(hitInfo != false)
         {
             Debug.DrawLine(transform.position, hitInfo.point, Color.red);
         }
         else
         {
-            Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.green);
+            Debug.DrawLine(transform.position, transform.position + transform.right * playerDetectionRange, Color.green);
         }
 
         if (hitInfo.collider.CompareTag("Player"))

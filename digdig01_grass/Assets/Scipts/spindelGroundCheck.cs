@@ -17,10 +17,25 @@ public class spindelGroundCheck : MonoBehaviour
         
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Spider.GetComponent<spiderScript>().onTop = true;
+        if (collision.collider.tag == "ground_Tag")
+        {
+            Spider.GetComponent<spiderScript>().onTop = true;
+        }
+        /*else
+        {
+            Spider.GetComponent<spiderScript>().onTop = false; 
+        }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.tag != "ground_Tag")
+        {
+            Spider.GetComponent<spiderScript>().onTop = false;
+        }*/
+    }
+
 
     /*private void OnCollisionEnter2D(Collision2D collision)
     {

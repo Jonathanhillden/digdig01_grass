@@ -17,8 +17,12 @@ public class Spider_RoofCheck : MonoBehaviour
         
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnollisionEnter2D(Collider2D collision)
     {
         Spider.GetComponent<spiderScript>().Under = true;
     }
+    /*private void OnTriggerExit2D(Collider2D collision)
+    {
+        Spider.GetComponent<spiderScript>().Under = false;
+    }*/
 }

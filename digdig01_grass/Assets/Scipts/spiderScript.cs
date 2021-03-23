@@ -13,7 +13,8 @@ public class spiderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spiderRigidbody = GetComponent<Rigidbody2D>();   
+        spiderRigidbody = GetComponent<Rigidbody2D>();
+        spiderRigidbody.velocity = new Vector2(0f, -1f);
     }
 
     // Update is called once per frame
@@ -38,11 +39,18 @@ public class spiderScript : MonoBehaviour
             //transform.Rotate(0f, 90f, 0f); 
             spiderRigidbody.velocity = new Vector2(-moveSpeed, 0f);
         }
+        else if (onTop == false)
+        {
+            //spiderRigidbody.velocity = new Vector2(0f, 0f); 
+        }
     }
 
     private void isUnder()
     {
-        
+        if (Under == true)
+        {
+            spiderRigidbody.velocity = new Vector2(moveSpeed, 0f);
+        }
     }
     
     

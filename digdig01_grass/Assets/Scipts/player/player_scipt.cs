@@ -30,13 +30,15 @@ public class player_scipt : MonoBehaviour
 
         if (Input.GetKey("d"))
         {
-            transform.localScale = new Vector2(1, 1);
-            //transform.localScale.x
+            //transform.localScale = new Vector2(1, 1);
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
         if (Input.GetKey("a"))
         {
-            transform.localScale = new Vector2(-1, 1); 
+            //transform.localScale = new Vector2(-1, 1);
+            transform.eulerAngles = new Vector3(0, -180, 0);
+
         }
     }
 

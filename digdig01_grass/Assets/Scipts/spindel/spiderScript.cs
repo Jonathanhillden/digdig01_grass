@@ -6,52 +6,32 @@ public class spiderScript : MonoBehaviour
 {
     public float moveSpeed = 3f;
     Rigidbody2D spiderRigidbody;
-    public bool onTop = false;
-    public bool onRightWall = false;
-    public bool onLeftWall = false;
-    public bool Under = false;
+    public Transform groundCheck;
+    float nextMoveTime = 0;
+    float timesASeacond = 0.5f;
+    bool movingDown = false;
+    bool movingUp = false; 
+
     // Start is called before the first frame update
     void Start()
     {
         spiderRigidbody = GetComponent<Rigidbody2D>();
-        spiderRigidbody.velocity = new Vector2(0f, -1f);
+        movingDown = true; 
+        //spiderRigidbody.velocity = new Vector2(0f, -1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (facingLeft())
+        spiderRigidbody.velocity = new Vector2(0f, -moveSpeed); 
+        if (Time.time >= nextMoveTime)
         {
-            spiderRigidbody.velocity = new Vector2(-moveSpeed, 0f);
-        }*/
-        Top();
-        isUnder();
-    }
-    /*private bool facingLeft()
-    {
-        return transform.localScale.x > Mathf.Epsilon; 
-    }*/
-
-    private void Top()
-    {
-        if (onTop == true)
-        {
-            //transform.Rotate(0f, 90f, 0f); 
-            spiderRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+            nextMoveTime = Time.time + 1f / timesASeacond;
         }
-        else if (onTop == false)
+        if (movingDown)
         {
-            //spiderRigidbody.velocity = new Vector2(0f, 0f); 
+            spiderRigidbody.velocity = new Vector2(0f, -moveSpeed);
         }
     }
 
-    private void isUnder()
-    {
-        if (Under == true)
-        {
-            spiderRigidbody.velocity = new Vector2(moveSpeed, 0f);
-        }
-    }
-    
-    
 }

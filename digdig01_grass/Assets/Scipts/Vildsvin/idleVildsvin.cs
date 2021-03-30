@@ -12,22 +12,20 @@ public class idleVildsvin : MonoBehaviour
 
     public Transform groundCheck;
 
-    int groundLayerMask;
-    int wallLayerMask;
+    int obstacleLayerMask;
 
     void Start()
     {
         Physics2D.queriesStartInColliders = false;
-        groundLayerMask = LayerMask.GetMask("Ground");
-        wallLayerMask = LayerMask.GetMask("Wall", "Ground");
+        obstacleLayerMask = LayerMask.GetMask("Wall", "Ground");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(Vector2.right * -speed * Time.deltaTime);
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, groundDetectionRange, groundLayerMask);
-        RaycastHit2D wallInfo = Physics2D.Raycast(transform.position, transform.right, -wallDetectionRange, wallLayerMask);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundCheck.position, Vector2.down, groundDetectionRange, obstacleLayerMask);
+        RaycastHit2D wallInfo = Physics2D.Raycast(transform.position, transform.right, -wallDetectionRange, obstacleLayerMask);
         if (!groundInfo.collider || wallInfo.collider)
         {
             if (movingRight)

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spindelGroundCheck : MonoBehaviour
+public class venomScript : MonoBehaviour
 {
-    GameObject Spider; 
     // Start is called before the first frame update
     void Start()
     {
-        Spider = gameObject.transform.parent.gameObject; 
+        
     }
 
     // Update is called once per frame
@@ -17,5 +16,12 @@ public class spindelGroundCheck : MonoBehaviour
         
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(this.gameObject); 
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+
+        }
+    }
 }

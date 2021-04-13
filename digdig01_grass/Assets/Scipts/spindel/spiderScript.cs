@@ -6,7 +6,6 @@ public class spiderScript : MonoBehaviour
 {
     public float moveSpeed = 3f;
     Rigidbody2D spiderRigidbody;
-    public Transform groundCheck;
     float nextMoveTime = 0;
     float timesASeacond = 0.5f;
     bool movingDown = false;
@@ -24,14 +23,29 @@ public class spiderScript : MonoBehaviour
     void Update()
     {
         spiderRigidbody.velocity = new Vector2(0f, -moveSpeed); 
-        if (Time.time >= nextMoveTime)
-        {
-            nextMoveTime = Time.time + 1f / timesASeacond;
-        }
         if (movingDown)
         {
             spiderRigidbody.velocity = new Vector2(0f, -moveSpeed);
         }
+        while (movingUp)
+        {
+            spiderRigidbody.velocity = new Vector2(0f, moveSpeed);
+            if (Time.time >= nextMoveTime)
+            {
+                nextMoveTime = Time.time + 1f / timesASeacond;
+                movingUp = false;
+                movingDown = true; 
+            }
+        }
+        while (movingDown)
+        {
+            spiderRigidbody.velocity = new Vector2(0f, -moveSpeed);
+            if (Time.time >= nextMoveTime)
+            {
+                nextMoveTime = Time.time + 1f / timesASeacond;
+                movingDown = false;
+                movingUp = true; 
+            }
+        }
     }
-
 }

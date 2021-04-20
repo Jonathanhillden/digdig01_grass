@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class onGround_script : MonoBehaviour
 {
+    public Animator animator;
     GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
         Player = gameObject.transform.parent.gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,6 +25,7 @@ public class onGround_script : MonoBehaviour
         if (collision.collider.tag == "ground_Tag")
         {
             Player.GetComponent<player_scipt>().isGrounded = false;
+            animator.SetBool("jumping", false);
         }
     }
 }

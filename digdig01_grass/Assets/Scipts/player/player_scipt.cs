@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class player_scipt : MonoBehaviour
 {
+    //Animation
+    public Animator animator;
+    float horizontalMove;
     //Movement
     public float moveSpeed = 5f;
     public float jump = 5f;
@@ -16,6 +19,8 @@ public class player_scipt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Animation
+        horizontalMove = 0f;
         //Camera
         offset = camPos.position - transform.position; 
     }
@@ -28,19 +33,25 @@ public class player_scipt : MonoBehaviour
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed;
 
+        horizontalMove = Input.GetAxisRaw("Horizontal") * Time.deltaTime * moveSpeed;
+
+        animator.SetFloat("speed", horizontalMove);
+
         //Camera
         camPos.position = transform.position + offset; 
 
         if (Input.GetKey("d"))
         {
             //transform.localScale = new Vector2(1, 1);
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            //transform.eulerAngles = new Vector3(0, 0, 0);
+            animator.SetBool("facingRight", true);
         }
 
         if (Input.GetKey("a"))
         {
             //transform.localScale = new Vector2(-1, 1);
-            transform.eulerAngles = new Vector3(0, -180, 0);
+            //transform.eulerAngles = new Vector3(0, -180, 0);
+            animator.SetBool("facingRight", false);
 
         }
     }
@@ -50,6 +61,8 @@ public class player_scipt : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
+            //Jump Animation
+            animator.SetBool("jumping", true);
         }
     }
 
@@ -68,6 +81,7 @@ public class player_scipt : MonoBehaviour
                 {
                     isClimbing = true;
                     //start climbing animation
+                    animator.SetBool("climbing", true);
                 }
             }
         }
@@ -80,6 +94,7 @@ public class player_scipt : MonoBehaviour
                     isClimbing = false;
                     gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
                     //stop climbing animation
+                    animator.SetBool("climbing", false);
                 }
             }
         }

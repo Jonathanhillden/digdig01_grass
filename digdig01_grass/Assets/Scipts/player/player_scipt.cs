@@ -13,16 +13,23 @@ public class player_scipt : MonoBehaviour
     public bool isGrounded = false;
     public bool onLadder = false;
     bool isClimbing = true;
+    float gravity;
     //Camera
     Vector3 offset;
-    public Transform camPos; 
+    public Transform camPos;
+    //Spawnpoint
+    public GameObject spawnpoint;
     // Start is called before the first frame update
     void Start()
     {
+        //Camera
+        offset = camPos.position - transform.position;
+        //Set position till player Spawnpoint
+        gameObject.transform.position = spawnpoint.transform.position;
+        //Gravity
+        gravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
         //Animation
         horizontalMove = 0f;
-        //Camera
-        offset = camPos.position - transform.position; 
     }
 
     // Update is called once per frame
@@ -92,7 +99,7 @@ public class player_scipt : MonoBehaviour
                 if (Input.GetKey("a") || Input.GetKey("d"))
                 {
                     isClimbing = false;
-                    gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                    gameObject.GetComponent<Rigidbody2D>().gravityScale = gravity;
                     //stop climbing animation
                     animator.SetBool("climbing", false);
                 }

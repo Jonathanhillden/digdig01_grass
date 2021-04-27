@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class venomScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int damage = 1;
+
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject); 
+
         if (collision.gameObject.tag.Equals("Player"))
         {
-
+            collision.gameObject.GetComponent<heathScript>().TakeDamage(damage);
         }
+        Destroy(gameObject);
     }
 }

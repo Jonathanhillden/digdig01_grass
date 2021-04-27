@@ -12,7 +12,7 @@ public class spiderScript : MonoBehaviour
     bool movingUp = false;
     //Shoot
     public float range;
-    public Transform target;
+    Transform target;
     Vector2 direction;
     bool detected = false;
 
@@ -25,6 +25,7 @@ public class spiderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         spiderRigidbody = GetComponent<Rigidbody2D>();
         movingDown = true;
         Physics2D.queriesStartInColliders = false; 

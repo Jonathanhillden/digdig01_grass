@@ -42,7 +42,7 @@ public class idleVildsvin : MonoBehaviour
             if (gameObject.GetComponent<chargeVildsvin>().isCharging == true)
             {
                 gameObject.GetComponent<chargeVildsvin>().isCharging = false;
-                speed /= 2;
+                speed /= 1.5f;
             }
         }
     }
